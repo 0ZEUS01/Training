@@ -65,123 +65,73 @@ function showWorkoutDetails(day) {
 }
 
 const mealPlan = [
-  // Week 1 (repeat for simplicity, with some variety)
+  // Day 1 (Sunday)
   {
     meals: [
-      {
-        name: 'Breakfast: Greek Yogurt + Berries + 10 Almonds',
-        calories: 300,
-      },
-      {
-        name: 'Lunch: Grilled Chicken Breast + Mixed Salad (olive oil & lemon)',
-        calories: 450,
-      },
-      {
-        name: 'Dinner: Veggie Omelette (2 eggs, spinach, tomato, onion)',
-        calories: 300,
-      },
+      { name: 'Breakfast: 2 boiled eggs + 1 piece of bread + 1 orange', calories: 350 },
+      { name: 'Snack: Plain yogurt (150g) + 1 banana', calories: 200 },
+      { name: 'Lunch: Chicken tagine (150g chicken, potatoes, carrots, onion, tomato, spices) + 1 piece of bread', calories: 600 },
+      { name: 'Dinner: Lentil soup (adass) + salad (tomato, onion, green pepper, olive oil)', calories: 600 },
     ],
-    note: 'Drink plenty of water. Optional: black coffee or tea. Walk + stretch today!'
+    note: 'Drink plenty of water. Walk + stretch today!'
   },
+  // Day 2
   {
     meals: [
-      {
-        name: 'Breakfast: Oatmeal (water, cinnamon, apple slices)',
-        calories: 280,
-      },
-      {
-        name: 'Lunch: Tuna Salad (canned tuna in water, greens, cucumber, tomato)',
-        calories: 400,
-      },
-      {
-        name: 'Dinner: Cottage Cheese + Sliced Veggies',
-        calories: 250,
-      },
+      { name: 'Breakfast: 2 eggs omelette (with tomato, onion) + 1 piece of bread', calories: 350 },
+      { name: 'Snack: 1 apple + 10 almonds', calories: 180 },
+      { name: 'Lunch: Grilled turkey breast (150g) + rice (1 cup) + sautéed carrots & zucchini', calories: 600 },
+      { name: 'Dinner: Chickpea stew (homemade loubia with tomato, onion, spices) + bread', calories: 600 },
     ],
     note: 'Add a fruit if hungry.'
   },
+  // Day 3
   {
     meals: [
-      {
-        name: 'Breakfast: 2 Boiled Eggs + 1 Banana',
-        calories: 250,
-      },
-      {
-        name: 'Lunch: Turkey Wrap (whole wheat, turkey breast, lettuce, tomato, mustard)',
-        calories: 400,
-      },
-      {
-        name: 'Dinner: Lentil Soup + Side Salad',
-        calories: 300,
-      },
+      { name: 'Breakfast: Plain yogurt (150g) + 1 banana + 1 piece of bread', calories: 350 },
+      { name: 'Snack: 2 boiled eggs', calories: 160 },
+      { name: 'Lunch: Chicken and potato stew (150g chicken, potatoes, carrots, onion, tomato)', calories: 600 },
+      { name: 'Dinner: Vegetable couscous (carrots, zucchini, onion, chickpeas, small piece of chicken)', calories: 600 },
     ],
     note: 'No sugary drinks.'
   },
+  // Day 4
   {
     meals: [
-      {
-        name: 'Breakfast: Protein Shake (whey or milk, banana, ice)',
-        calories: 250,
-      },
-      {
-        name: 'Lunch: Baked Fish + Steamed Veggies',
-        calories: 400,
-      },
-      {
-        name: 'Dinner: Chicken Stir Fry (chicken, mixed veggies, soy sauce)',
-        calories: 350,
-      },
+      { name: 'Breakfast: 2 eggs + 1 piece of bread + 1 apple', calories: 350 },
+      { name: 'Snack: 1 orange + 10 almonds', calories: 180 },
+      { name: 'Lunch: Turkey kefta (ground turkey, onion, parsley, spices) + rice (1 cup) + sautéed green beans', calories: 600 },
+      { name: 'Dinner: Lentil soup (adass) + salad (tomato, onion, green pepper, olive oil)', calories: 600 },
     ],
     note: 'Add a handful of nuts if needed.'
   },
+  // Day 5
   {
     meals: [
-      {
-        name: 'Breakfast: Greek Yogurt + 1 Apple',
-        calories: 250,
-      },
-      {
-        name: 'Lunch: Egg Salad (2 eggs, greens, tomato, cucumber)',
-        calories: 350,
-      },
-      {
-        name: 'Dinner: Grilled Chicken + Steamed Broccoli',
-        calories: 350,
-      },
+      { name: 'Breakfast: Plain yogurt (150g) + 1 banana + 1 piece of bread', calories: 350 },
+      { name: 'Snack: 2 boiled eggs', calories: 160 },
+      { name: 'Lunch: Chicken and potato tagine (150g chicken, potatoes, carrots, onion, tomato, spices) + bread', calories: 600 },
+      { name: 'Dinner: Chickpea stew (loubia) + salad (tomato, onion, green pepper, olive oil)', calories: 600 },
     ],
     note: 'Stay hydrated.'
   },
+  // Day 6
   {
     meals: [
-      {
-        name: 'Breakfast: Oatmeal + Berries',
-        calories: 280,
-      },
-      {
-        name: 'Lunch: Chickpea Salad (chickpeas, tomato, cucumber, parsley, lemon)',
-        calories: 350,
-      },
-      {
-        name: 'Dinner: Tuna + Sliced Veggies',
-        calories: 250,
-      },
+      { name: 'Breakfast: 2 eggs omelette (with tomato, onion) + 1 piece of bread', calories: 350 },
+      { name: 'Snack: 1 apple + 10 almonds', calories: 180 },
+      { name: 'Lunch: Grilled turkey breast (150g) + rice (1 cup) + sautéed carrots & zucchini', calories: 600 },
+      { name: 'Dinner: Lentil soup (adass) + salad (tomato, onion, green pepper, olive oil)', calories: 600 },
     ],
     note: 'Add a boiled egg if hungry.'
   },
+  // Day 7 (Sunday)
   {
     meals: [
-      {
-        name: 'Breakfast: 2 Boiled Eggs + Tomato',
-        calories: 200,
-      },
-      {
-        name: 'Lunch: Grilled Chicken + Quinoa + Veggies',
-        calories: 450,
-      },
-      {
-        name: 'Dinner: Greek Yogurt + Berries',
-        calories: 200,
-      },
+      { name: 'Breakfast: 2 boiled eggs + 1 piece of bread + 1 orange', calories: 350 },
+      { name: 'Snack: Plain yogurt (150g) + 1 banana', calories: 200 },
+      { name: 'Lunch: Chicken tagine (150g chicken, potatoes, carrots, onion, tomato, spices) + 1 piece of bread', calories: 600 },
+      { name: 'Dinner: Vegetable couscous (carrots, zucchini, onion, chickpeas, small piece of chicken)', calories: 600 },
     ],
     note: 'Sunday: Walk + stretch, light eating.'
   },
@@ -196,11 +146,12 @@ while (mealPlan.length < 30) {
 function showMealDetails(day) {
   const modal = document.getElementById('meal-details');
   const plan = mealPlan[day - 1];
+  let totalCals = plan.meals.reduce((sum, m) => sum + m.calories, 0);
   let html = `<div class='modal-content'><button class='close-btn' onclick='closeModal()'>&times;</button><h2>Day ${day} Meals</h2><ul>`;
   plan.meals.forEach(m => {
     html += `<li>${m.name} <span style='color:#888;font-size:0.95em;'>(${m.calories} kcal)</span></li>`;
   });
-  html += `</ul><p style='margin-top:10px;'>${plan.note}</p></div>`;
+  html += `</ul><p style='margin-top:10px;'><b>Total:</b> ${totalCals} kcal</p><p>${plan.note}</p></div>`;
   modal.innerHTML = html;
   modal.classList.remove('hidden');
 }
