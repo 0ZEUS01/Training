@@ -60,8 +60,25 @@ for (let i = 1; i < 30; i++) {
 function showWorkoutDetails(day) {
   const modal = document.getElementById('workout-details');
   const plan = trainingPlan[day - 1];
-  modal.innerHTML = `<div class='modal-content'><button class='close-btn' onclick='closeModal()'>&times;</button><h2>Day ${day}: ${plan.title}</h2><p>${plan.desc}</p><a href='${plan.video}' target='_blank'>Watch Video</a></div>`;
+  const done = isDayDone('trainingDoneDays', day);
+  modal.innerHTML = `<div class='modal-content'><button class='close-btn' onclick='closeModal()'>&times;</button><h2>Day ${day}: ${plan.title}</h2><p>${plan.desc}</p><a href='${plan.video}' target='_blank'>Watch Video</a><br><button id='training-done-btn'>${done ? 'Mark as Not Done' : 'Mark as Done'}</button></div>`;
   modal.classList.remove('hidden');
+  // Add event listener for done button
+  document.getElementById('training-done-btn').onclick = function() {
+    toggleDayDone('trainingDoneDays', day);
+    // Update calendar day color
+    const trainingCal = document.getElementById('training-calendar');
+    if (trainingCal) {
+      const dayDiv = trainingCal.children[day - 1];
+      if (isDayDone('trainingDoneDays', day)) {
+        dayDiv.classList.add('done');
+      } else {
+        dayDiv.classList.remove('done');
+      }
+    }
+    // Update button text
+    this.textContent = isDayDone('trainingDoneDays', day) ? 'Mark as Not Done' : 'Mark as Done';
+  };
 }
 
 const mealPlan = [
@@ -147,13 +164,51 @@ function showMealDetails(day) {
   const modal = document.getElementById('meal-details');
   const plan = mealPlan[day - 1];
   let totalCals = plan.meals.reduce((sum, m) => sum + m.calories, 0);
+  const done = isDayDone('mealDoneDays', day);
   let html = `<div class='modal-content'><button class='close-btn' onclick='closeModal()'>&times;</button><h2>Day ${day} Meals</h2><ul>`;
   plan.meals.forEach(m => {
     html += `<li>${m.name} <span style='color:#888;font-size:0.95em;'>(${m.calories} kcal)</span></li>`;
   });
-  html += `</ul><p style='margin-top:10px;'><b>Total:</b> ${totalCals} kcal</p><p>${plan.note}</p></div>`;
+  html += `</ul><p style='margin-top:10px;'><b>Total:</b> ${totalCals} kcal</p><p>${plan.note}</p><button id='meal-done-btn'>${done ? 'Mark as Not Done' : 'Mark as Done'}</button></div>`;
   modal.innerHTML = html;
   modal.classList.remove('hidden');
+  // Add event listener for done button
+  document.getElementById('meal-done-btn').onclick = function() {
+    toggleDayDone('mealDoneDays', day);
+    // Update calendar day color
+    const mealCal = document.getElementById('meal-calendar');
+    if (mealCal) {
+      const dayDiv = mealCal.children[day - 1];
+      if (isDayDone('mealDoneDays', day)) {
+        dayDiv.classList.add('done');
+      } else {
+        dayDiv.classList.remove('done');
+      }
+    }
+    // Update button text
+    this.textContent = isDayDone('mealDoneDays', day) ? 'Mark as Not Done' : 'Mark as Done';
+  };
+}
+
+// Utility functions for persistent done status
+function getDoneDays(key) {
+  return JSON.parse(localStorage.getItem(key) || '[]');
+}
+function setDoneDays(key, arr) {
+  localStorage.setItem(key, JSON.stringify(arr));
+}
+function isDayDone(key, day) {
+  const arr = getDoneDays(key);
+  return arr.includes(day);
+}
+function toggleDayDone(key, day) {
+  let arr = getDoneDays(key);
+  if (arr.includes(day)) {
+    arr = arr.filter(d => d !== day);
+  } else {
+    arr.push(day);
+  }
+  setDoneDays(key, arr);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -165,6 +220,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const day = document.createElement('div');
       day.className = 'calendar-day';
       day.textContent = `Day ${i}`;
+      if (isDayDone('trainingDoneDays', i)) {
+        day.classList.add('done');
+      }
       day.addEventListener('click', () => showWorkoutDetails(i));
       trainingCal.appendChild(day);
     }
@@ -178,6 +236,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const day = document.createElement('div');
       day.className = 'calendar-day';
       day.textContent = `Day ${i}`;
+      if (isDayDone('mealDoneDays', i)) {
+        day.classList.add('done');
+      }
       day.addEventListener('click', () => showMealDetails(i));
       mealCal.appendChild(day);
     }
